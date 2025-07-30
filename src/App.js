@@ -1,25 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import Header from "./components/Header/Header";
+import Card from "./components/Card/Card";
+import ToDoList from "./components/ToDo/ToDoList/ToDoList";
+import WeekMenu from "./components/WeekMenu/WeekMenu/WeekMenu";
+import Weather from "./components/Weather/Weather";
+import {faArrowsRotate} from '@fortawesome/free-solid-svg-icons';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <>
+            <Header/>
+            <div className="App flex flex-row flex-wrap gap-4 p-4 justify-center">
+                <Card title="Weather" icon={faArrowsRotate}><Weather/></Card>
+                <Card title="To-do">
+                    <ToDoList />
+                </Card>
+                <Card title="Weekmenu">
+                    <WeekMenu />
+                </Card>
+            </div>
+        </>
+    );
 }
 
 export default App;
