@@ -3,28 +3,26 @@ import DifficultyDots from "../../DifficulttyDots/DifficultyDots";
 
 function WeekMenu() {
     const [weekMenu, setWeekMenu] = useState([]);
-    const daysOfTheWeek = ["Maandag", "Dinsdag", "Woensdag", "Donderdag", "Vrijdag", "Zaterdag", "Zondag"];
+    const daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
     useEffect(() => {
         async function fetchWeekMenu() {
-            const response = await fetch('http://localhost:8080/weekmenu');
+            const response = await fetch('http://localhost:8080/weekmenu/upcoming');
             const data = await response.json();
-            setWeekMenu(data.weekMenu);
+            setWeekMenu(data);
         }
-
 
         fetchWeekMenu();
     }, []);
 
     const mergeDataWithDaysOfTheWeek = () => {
-        return daysOfTheWeek.map((dayName, index) => {
-            const dayData = weekMenu[index] || {};
+        return weekMenu.map((dayData) => {
             return {
                 id: dayData.id,
-                day: dayName,
-                nameDish: dayData.name || "",
-                categorie: dayData.categorie || "",
-                difficulty: dayData.difficulty || "medium"
+                day: daysOfTheWeek[dayData.dayIndex],
+                nameDish: dayData.recipe.name || "",
+                categorie: dayData.recipe.categorie || "",
+                difficulty: dayData.recipe.difficulty || "easy"
             };
         })
     };
