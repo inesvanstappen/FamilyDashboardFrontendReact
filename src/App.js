@@ -10,7 +10,7 @@ function App() {
     return (
         <>
             <Header/>
-            <div className="App flex flex-row flex-wrap gap-4 p-4 justify-center">
+            <div className="App flex flex-row flex-wrap gap-5 p-4 justify-center">
                 <Card title="Weather" icon={faArrowsRotate}><Weather/></Card>
                 <Card title="To-do">
                     <ToDoList />

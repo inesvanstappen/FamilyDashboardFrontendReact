@@ -38,8 +38,8 @@ function WeekMenu() {
                         className="flex flex-wrap items-center justify-between p-2 rounded"
                     >
                         <div className="w-full sm:w-1/4 font-semibold">{data.day}</div>
-                        <div className="w-full sm:w-1/4">{data.nameDish}</div>
-                        <div className="w-full sm:w-1/4">
+                        <div className="w-full sm:w-1/4 text-right">{data.nameDish}</div>
+                        <div className="w-full sm:w-1/4 text-right">
                             <DifficultyDots level={data.difficulty} />
                         </div>
                     </div>
