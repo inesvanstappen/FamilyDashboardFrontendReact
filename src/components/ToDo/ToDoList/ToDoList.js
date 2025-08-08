@@ -48,7 +48,7 @@ function ToDoList() {
                                 </div>
                             </div>
                             <p className="flex items-center justify-between">
-                                <span>{toDo.assignedUser}</span>
+                                <span>{toDo.assignedUser.name}</span>
                                 <span>{toDo.dueDate}</span>
                             </p>
                         </li>
