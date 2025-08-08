@@ -5,7 +5,7 @@ function Card({title, icon, children}) {
     return <div className={`w-1/3 ${styles.card}`}>
         <h2 className="relative text-center">
             <span>{title}</span>
-            <FontAwesomeIcon icon={icon} className="absolute right-0 top-1/2 -translate-y-1/2 text-white pr-4" />
+            {icon ? <FontAwesomeIcon icon={icon} className="absolute right-0 top-1/2 -translate-y-1/2 text-white pr-4" /> : null}
         </h2>
         {children}
     </div>
