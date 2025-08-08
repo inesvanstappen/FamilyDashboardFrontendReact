@@ -14,7 +14,7 @@ function Weather() {
     }, []);
 
     if (!weather?.forecast?.length) {
-        return <p className="text-gray-500">Loading weather data...</p>;
+        return <p>Loading weather data...</p>;
     }
 
     const today = weather.forecast[0];
