@@ -36,7 +36,7 @@ function ToDoList() {
                     toDos.map((toDo, index) => (
                         <li key={index}>
                             <div className="flex items-center justify-between">
-                                <p className="font-semibold">{toDo.task}</p>
+                                <p className="font-semibold">{toDo.title}</p>
                                 <div className="flex items-center gap-2">
                                     <span
                                         className={`w-3 h-3 rounded-full inline-block mr-2 ${getStatusDotClass(toDo.status)}`}
@@ -48,7 +48,7 @@ function ToDoList() {
                                 </div>
                             </div>
                             <p className="flex items-center justify-between">
-                                <span>{toDo.assignedUser.name}</span>
+                                <span>{toDo.assignedUserName}</span>
                                 <span>{toDo.dueDate}</span>
                             </p>
                         </li>
