@@ -25,7 +25,7 @@ function Weather() {
                 <h3>
                     Current temperature
                 </h3>
-                <p className="font-semibold">{weather.tempNow}<span>°</span>
+                <p>{weather.tempNow}<span>°</span>
                 </p>
             </div>
         </div>
