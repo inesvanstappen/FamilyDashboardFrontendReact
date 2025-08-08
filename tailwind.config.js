@@ -17,10 +17,26 @@ module.exports = {
                     dark: '#1f0c2a',
                 },
                 status: {
-                    open: '#ef4444',
-                    inProgress: '#fbbf24',
-                    done: '#1693b6',
-                    waiting: '#30123f',
+                    open: {
+                        DEFAULT: '#1693B6',
+                        light: '#5BB9D4',
+                        dark: '#0B5C75',
+                    },
+                    inProgress: {
+                        DEFAULT: '#06336C',
+                        light: '#3F6FA1',
+                        dark: '#021A36',
+                    },
+                    done:{
+                        DEFAULT: '#30123F',
+                        light: '#5A3A6A',
+                        dark: '#1A0824',
+                    },
+                    waiting: {
+                        DEFAULT: '#D0207D',
+                        light: '#E85CA4',
+                        dark: '#7A0F49',
+                    },
                 },
             },
         },

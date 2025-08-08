@@ -1,15 +1,15 @@
 .statusOpen {
-    @apply bg-red-500;
+    @apply bg-status-open-light;
 }
 
 .statusInProgress {
-    @apply bg-yellow-500;
+    @apply bg-status-inProgress-light;
 }
 
 .statusDone {
-    @apply bg-primary;
+    @apply bg-status-done-light;
 }
 
 .statusWaiting {
-    @apply bg-secondary;
+    @apply bg-status-waiting-dark;
 }
