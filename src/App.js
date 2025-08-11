@@ -2,7 +2,7 @@ import './App.css';
 import Header from "./components/Header/Header";
 import Card from "./components/Card/Card";
 import ToDoList from "./components/ToDo/ToDoList/ToDoList";
-import WeekMenu from "./components/WeekMenu/WeekMenu/WeekMenu";
+import WeekMenu from "./components/WeekMenu/WeekMenu";
 import Weather from "./components/Weather/Weather";
 import {faArrowsRotate} from '@fortawesome/free-solid-svg-icons';
 
