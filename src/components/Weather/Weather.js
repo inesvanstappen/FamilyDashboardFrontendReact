@@ -7,6 +7,7 @@ function Weather() {
         async function fetchWeather() {
             const response = await fetch("http://localhost:8080/weather");
             const data = await response.json();
+            console.log(data);
             setWeather(data);
         }
 
@@ -18,6 +19,7 @@ function Weather() {
     }
 
     const today = weather.forecast[0];
+    const tomorrow = weather.forecast[1];
 
     return (<>
         <div className="flex items-end justify-center gap-4 mb-4">
@@ -30,7 +32,7 @@ function Weather() {
             </div>
         </div>
 
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center mb-4">
             <h3>Today</h3>
 
             <div className="flex items-start gap-4">
@@ -43,6 +45,23 @@ function Weather() {
                 <div className="flex flex-col">
                     <p>{today.minTemp}<span>°</span> – {today.maxTemp}<span>°</span></p>
                     <p>{today.condition}</p>
+                </div>
+            </div>
+        </div>
+
+        <div className="flex flex-col items-center mb-4">
+            <h3>Tomorrow</h3>
+
+            <div className="flex items-start gap-4">
+                <img
+                    className="w-12 h-12 mr-4"
+                    src={`https://${tomorrow.code}`}
+                    alt={tomorrow.condition}
+                />
+
+                <div className="flex flex-col">
+                    <p>{tomorrow.minTemp}<span>°</span> – {tomorrow.maxTemp}<span>°</span></p>
+                    <p>{tomorrow.condition}</p>
                 </div>
             </div>
         </div>
