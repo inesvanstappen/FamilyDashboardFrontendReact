@@ -16,6 +16,10 @@ code {
 }
 
 @layer base {
+    .coloredBackground {
+        @apply text-white bg-primary
+    }
+
     p {
         @apply text-lg;
     }
@@ -29,10 +33,20 @@ code {
     }
 
     h2 {
-        @apply text-xl  text-white bg-primary p-4;
+        @apply text-xl p-4;
     }
 
     h3 {
         @apply text-lg p-2;
+    }
+
+    form {
+        label {
+            @apply pr-2;
+        }
+
+        input {
+            @apply border-2 border-primary rounded-lg p-2;
+        }
     }
 }

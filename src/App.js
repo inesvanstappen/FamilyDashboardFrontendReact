@@ -5,20 +5,22 @@ import ToDoList from "./components/ToDo/ToDoList/ToDoList";
 import WeekMenu from "./components/WeekMenu/WeekMenu";
 import Weather from "./components/Weather/Weather";
 import {faArrowsRotate} from '@fortawesome/free-solid-svg-icons';
+import WeekMenuForm from "./components/WeekMenu/WeekMenuForm";
 
 function App() {
     return (
         <>
             <Header/>
-            <div className="App flex flex-row flex-wrap gap-5 p-4 justify-center">
-                <Card title="Weather" icon={faArrowsRotate}><Weather/></Card>
-                <Card title="To-do">
-                    <ToDoList />
+            <main className="App flex flex-row flex-wrap gap-5 p-4 justify-center">
+                <Card width="w-1/4" coloredHeader={true} title="Weather" icon={faArrowsRotate}><Weather/></Card>
+                <Card width="w-1/4" coloredHeader={true} title="To-do">
+                    <ToDoList/>
                 </Card>
-                <Card title="Weekmenu">
-                    <WeekMenu />
+                <Card width="w-1/4" coloredHeader={true} title="Weekmenu">
+                    <WeekMenu/>
                 </Card>
-            </div>
+                <WeekMenuForm/>
+            </main>
         </>
     );
 }
