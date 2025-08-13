@@ -6,6 +6,7 @@ import WeekMenu from "./components/WeekMenu/WeekMenu";
 import Weather from "./components/Weather/Weather";
 import {faArrowsRotate} from '@fortawesome/free-solid-svg-icons';
 import WeekMenuForm from "./components/WeekMenu/WeekMenuForm";
+import ToDoListForm from "./components/ToDo/ToDoList/ToDoListForm";
 
 function App() {
     return (
@@ -19,8 +20,9 @@ function App() {
                 <Card width="w-1/4" shadow={true} coloredHeader={true} title="Weekmenu">
                     <WeekMenu/>
                 </Card>
-                <WeekMenuForm/>
             </main>
+            <ToDoListForm/>
+            <WeekMenuForm/>
         </>
     );
 }
