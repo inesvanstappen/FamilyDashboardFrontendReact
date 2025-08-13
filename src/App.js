@@ -12,11 +12,11 @@ function App() {
         <>
             <Header/>
             <main className="App flex flex-row flex-wrap gap-5 p-4 justify-center">
-                <Card width="w-1/4" coloredHeader={true} title="Weather" icon={faArrowsRotate}><Weather/></Card>
-                <Card width="w-1/4" coloredHeader={true} title="To-do">
+                <Card width="w-1/4" shadow={true} coloredHeader={true} title="Weather" icon={faArrowsRotate}><Weather/></Card>
+                <Card width="w-1/4" shadow={true} coloredHeader={true} title="To-do">
                     <ToDoList/>
                 </Card>
-                <Card width="w-1/4" coloredHeader={true} title="Weekmenu">
+                <Card width="w-1/4" shadow={true} coloredHeader={true} title="Weekmenu">
                     <WeekMenu/>
                 </Card>
                 <WeekMenuForm/>
