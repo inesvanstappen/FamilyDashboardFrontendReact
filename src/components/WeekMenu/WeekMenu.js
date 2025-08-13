@@ -1,9 +1,9 @@
 import {useEffect, useState} from 'react';
 import DifficultyDots from "../DifficulttyDots/DifficultyDots";
+import {DAYS} from "../constants";
 
 function WeekMenu() {
     const [weekMenu, setWeekMenu] = useState({upcomingDayRecipes: []});
-    const daysOfTheWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
 
     useEffect(() => {
         async function fetchWeekMenu() {
@@ -19,7 +19,7 @@ function WeekMenu() {
         return weekMenu.upcomingDayRecipes.map((dayData) => {
             return {
                 id: dayData.id,
-                day: daysOfTheWeek[dayData.dayIndex],
+                day: DAYS[dayData.dayIndex],
                 nameDish: dayData.recipe.name || "",
                 categorie: dayData.recipe.categorie || "",
                 difficulty: dayData.recipe.difficulty || "easy"
