@@ -1,7 +1,7 @@
 import Card from "../Card/Card";
 import ToDoList from "../ToDo/ToDoList/ToDoList";
 import WeekMenu from "../WeekMenu/WeekMenu";
-import {faArrowsRotate} from "@fortawesome/free-solid-svg-icons";
+import {faArrowsRotate, faPlus} from "@fortawesome/free-solid-svg-icons";
 import Weather from "../Weather/Weather";
 
 function Main() {
@@ -11,10 +11,10 @@ function Main() {
                 <Card width="w-1/3" shadow={true} coloredHeader={true} title="Weather" icon={faArrowsRotate}>
                     <Weather/>
                 </Card>
-                <Card width="w-1/3" shadow={true} coloredHeader={true} title="To-do">
+                <Card width="w-1/3" shadow={true} coloredHeader={true} title="To-do" icon={faPlus} link="/AddToDo">
                     <ToDoList/>
                 </Card>
-                <Card width="w-1/3" shadow={true} coloredHeader={true} title="Weekmenu">
+                <Card width="w-1/3" shadow={true} coloredHeader={true} title="Weekmenu" icon={faPlus} link="/AddWeekMenu">
                     <WeekMenu/>
                 </Card>
             </main>
