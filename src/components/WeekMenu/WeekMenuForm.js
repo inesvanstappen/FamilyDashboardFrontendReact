@@ -36,7 +36,7 @@ function WeekMenuForm() {
             recipeIds
         };
 
-        const res = await fetch("http://localhost:8080/weekmenus", {
+        const res = await fetch("http://localhost:8080/weekmenu", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(payload),
