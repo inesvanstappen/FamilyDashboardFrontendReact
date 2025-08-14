@@ -1,28 +1,26 @@
 import './App.css';
-import Header from "./components/Header/Header";
-import Card from "./components/Card/Card";
-import ToDoList from "./components/ToDo/ToDoList/ToDoList";
-import WeekMenu from "./components/WeekMenu/WeekMenu";
-import Weather from "./components/Weather/Weather";
-import {faArrowsRotate} from '@fortawesome/free-solid-svg-icons';
-import WeekMenuForm from "./components/WeekMenu/WeekMenuForm";
+import Layout from "./components/Layout/Layout";
 import ToDoListForm from "./components/ToDo/ToDoList/ToDoListForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "./components/Main/Main";
+import NoPage from "./components/NoPage";
+import WeekMenu from "./components/WeekMenu/WeekMenu";
+import WeekMenuForm from "./components/WeekMenu/WeekMenuForm";
 
 function App() {
     return (
         <>
-            <Header/>
-            <main className="App flex flex-row flex-wrap gap-5 p-4 justify-center">
-                <Card width="w-1/4" shadow={true} coloredHeader={true} title="Weather" icon={faArrowsRotate}><Weather/></Card>
-                <Card width="w-1/4" shadow={true} coloredHeader={true} title="To-do">
-                    <ToDoList/>
-                </Card>
-                <Card width="w-1/4" shadow={true} coloredHeader={true} title="Weekmenu">
-                    <WeekMenu/>
-                </Card>
-            </main>
-            <ToDoListForm/>
-            <WeekMenuForm/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path="/" element={<Layout />}>
+                        <Route index element={<Main />} />
+                        <Route path="AddToDo" element={<ToDoListForm />} />
+                        <Route path="AddWeekMenu" element={<WeekMenuForm />} />
+                        <Route path="*" element={<NoPage />} />
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+
         </>
     );
 }

@@ -1,5 +1,3 @@
-import './Header.module.css';
-
 function Header() {
     function getLocalizedFormattedDate() {
         const today = new Date();
@@ -20,7 +18,7 @@ function Header() {
             <h1>Family Dashboard</h1>
             <p className="p-4 pt-8">{getLocalizedFormattedDate()}</p>
         </header>
-    )
+    );
 }
 
 export default Header;
