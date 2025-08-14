@@ -55,7 +55,7 @@ function WeekMenuForm() {
             <Card width="w-5/6" shadow={false} coloredHeader={false} title="Create Weekmenu">
                 <form onSubmit={handleSubmit}>
                     <div className="flex flex-row gap-4">
-                        <div className="flex flex-col justify-center">
+                        <div className="flex flex-col justify-center mr-8">
                             <label htmlFor="startDate">Startdatum</label>
                             <input
                                 type="date"
@@ -67,9 +67,9 @@ function WeekMenuForm() {
                             />
                         </div>
 
-                        <div className="flex flex-wrap gap-2 justify-between">
+                        <div className="flex flex-wrap gap-8">
                             {DAYS.map((day, idx) => (
-                                <div key={day} className="w-33 mt-4">
+                                <div key={day} className="mt-4">
                                     <label htmlFor={`day-${idx}`}>{day}</label>
                                     <select
                                         id={`day-${idx}`}
@@ -90,11 +90,13 @@ function WeekMenuForm() {
                         </div>
                     </div>
 
-                    <button
-                        type="submit"
-                    >
-                        Opslaan
-                    </button>
+                    <div className="flex justify-center mt-6">
+                        <button
+                            type="submit"
+                        >
+                            Opslaan
+                        </button>
+                    </div>
                 </form>
             </Card>
         </>

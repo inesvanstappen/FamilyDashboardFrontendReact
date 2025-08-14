@@ -140,11 +140,11 @@ function ToDoForm({ onSuccess }) {
                     </p>
                 )}
 
-                <button
-                    type="submit"
-                >
-                    Opslaan
-                </button>
+                <div className="flex justify-center mt-6">
+                    <button type="submit">
+                        Opslaan
+                    </button>
+                </div>
             </form>
         </Card>
     );

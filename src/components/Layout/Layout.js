@@ -6,7 +6,7 @@ function Layout() {
         <>
             <Header/>
             <div className="flex justify-center">
-            <Outlet/>
+                <Outlet/>
             </div>
         </>
     )

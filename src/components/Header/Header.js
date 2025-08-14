@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 function Header() {
     function getLocalizedFormattedDate() {
         const today = new Date();
@@ -15,7 +17,9 @@ function Header() {
 
     return (
         <header className="bg-primary text-white p-4 pl-12 flex justify-between">
-            <h1>Family Dashboard</h1>
+            <Link to="/">
+                <h1>Family Dashboard</h1>
+            </Link>
             <p className="p-4 pt-8">{getLocalizedFormattedDate()}</p>
         </header>
     );
