@@ -2,14 +2,19 @@ import {useEffect, useState} from 'react';
 import DifficultyDots from "../DifficulttyDots/DifficultyDots";
 import {DAYS, URL_BACKEND} from "../constants";
 
-function WeekMenu() {
+function WeekMenu({onLoad}) {
     const [weekMenu, setWeekMenu] = useState({upcomingDayRecipes: []});
 
     useEffect(() => {
         async function fetchWeekMenu() {
             const response = await fetch(`${URL_BACKEND}/weekmenu`);
             const data = await response.json();
+
             setWeekMenu(data);
+
+            if (data.upcomingDayRecipes.length > 0 && typeof onLoad === 'function') {
+                onLoad(data.id);
+            }
         }
 
         fetchWeekMenu();
