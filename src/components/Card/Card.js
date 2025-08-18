@@ -6,14 +6,14 @@ function Card({width, shadow, title, icons = [], coloredHeader, children}) {
         <h2 className={`relative text-center p-4 ${coloredHeader ? 'coloredBackground' : ''}`}>
             <span>{title}</span>
             {icons.length > 0 && (
-                <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 pr-4">
+                <div className="absolute right-0 top-1/2 -translate-y-1/2 flex gap-2 pr-4 cursor-pointer">
                     {icons.map((icon, index) =>
                         icon.link ? (
                             <Link to={icon.link} key={index}>
                                 <FontAwesomeIcon icon={icon.icon} className="text-white"/>
                             </Link>
                         ) : (
-                            <FontAwesomeIcon icon={icon.icon} className="text-white" key={index}/>
+                            <FontAwesomeIcon icon={icon.icon} onClick={icon.onClick} className="text-white" key={index}/>
                         )
                     )}
                 </div>
