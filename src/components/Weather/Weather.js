@@ -7,7 +7,6 @@ function Weather() {
         async function fetchWeather() {
             const response = await fetch("http://localhost:8080/weather");
             const data = await response.json();
-            console.log(data);
             setWeather(data);
         }
 
