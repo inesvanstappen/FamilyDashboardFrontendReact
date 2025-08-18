@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../../Card/Card";
+import {URL_BACKEND} from "../../constants";
 
 const STATUS_OPTIONS = [
     { value: "OPEN", label: "Open" },
@@ -19,7 +20,7 @@ function ToDoForm({ onSuccess }) {
     useEffect(() => {
         async function fetchUsers() {
             try {
-                const res = await fetch("http://localhost:8080/users");
+                const res = await fetch(`${URL_BACKEND}/users`);
                 const data = await res.json();
                 setUsers(data);
             } catch (err) {
@@ -48,7 +49,7 @@ function ToDoForm({ onSuccess }) {
         };
 
         try {
-            const res = await fetch("http://localhost:8080/todo", {
+            const res = await fetch(`${URL_BACKEND}/todo`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),

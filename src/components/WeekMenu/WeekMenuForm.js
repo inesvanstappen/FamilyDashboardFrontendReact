@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import Card from "../Card/Card";
-import {DAYS} from "../constants";
+import {DAYS, URL_BACKEND} from "../constants";
 
 function WeekMenuForm() {
     const [recipes, setRecipes] = useState([]);
@@ -36,7 +36,7 @@ function WeekMenuForm() {
             recipeIds
         };
 
-        const res = await fetch("http://localhost:8080/weekmenu", {
+        const res = await fetch(`${URL_BACKEND}/weekmenu`, {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(payload),

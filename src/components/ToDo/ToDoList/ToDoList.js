@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import styles from './ToDoList.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPencil} from "@fortawesome/free-solid-svg-icons";
+import {URL_BACKEND} from "../../constants";
 
 function ToDoList() {
     const [toDos, setToDos] = useState([]);
@@ -10,7 +11,7 @@ function ToDoList() {
 
     useEffect(() => {
         async function fetchToDoList() {
-            const response = await fetch('http://localhost:8080/todo');
+            const response = await fetch(`${URL_BACKEND}/todo`);
             const data = await response.json();
             setToDos(data);
         }
@@ -20,7 +21,7 @@ function ToDoList() {
 
     useEffect(() => {
         async function fetchUsers() {
-            const res = await fetch('http://localhost:8080/users');
+            const res = await fetch(`${URL_BACKEND}/users`);
             const data = await res.json();
             setUsers(data);
         }
@@ -38,7 +39,7 @@ function ToDoList() {
     const handleUpdate = async (e) => {
         e.preventDefault();
 
-        const response = await fetch(`http://localhost:8080/todo/${editingToDo.id}`, {
+        const response = await fetch(`${URL_BACKEND}/todo/${editingToDo.id}`, {
             method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(editingToDo),

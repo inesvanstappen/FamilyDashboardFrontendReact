@@ -1,13 +1,13 @@
 import {useEffect, useState} from 'react';
 import DifficultyDots from "../DifficulttyDots/DifficultyDots";
-import {DAYS} from "../constants";
+import {DAYS, URL_BACKEND} from "../constants";
 
 function WeekMenu() {
     const [weekMenu, setWeekMenu] = useState({upcomingDayRecipes: []});
 
     useEffect(() => {
         async function fetchWeekMenu() {
-            const response = await fetch('http://localhost:8080/weekmenu');
+            const response = await fetch(`${URL_BACKEND}/weekmenu`);
             const data = await response.json();
             setWeekMenu(data);
         }
@@ -26,8 +26,6 @@ function WeekMenu() {
             };
         })
     };
-
-    const displayData = mergeDataWithDaysOfTheWeek();
 
     return (
         <div className="flex flex-col gap-4">

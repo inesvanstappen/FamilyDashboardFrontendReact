@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
+import {URL_BACKEND} from "../constants";
 
 function Weather() {
     const [weather, setWeather] = useState(null);
 
     useEffect(() => {
         async function fetchWeather() {
-            const response = await fetch("http://localhost:8080/weather");
+            const response = await fetch(`${URL_BACKEND}/weather`);
             const data = await response.json();
             setWeather(data);
         }
