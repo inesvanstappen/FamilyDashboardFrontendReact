@@ -4,7 +4,6 @@ import ToDoListForm from "./components/ToDo/ToDoList/ToDoListForm";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Main from "./components/Main/Main";
 import NoPage from "./components/NoPage";
-import WeekMenu from "./components/WeekMenu/WeekMenu";
 import WeekMenuForm from "./components/WeekMenu/WeekMenuForm";
 
 function App() {
@@ -16,6 +15,7 @@ function App() {
                         <Route index element={<Main />} />
                         <Route path="AddToDo" element={<ToDoListForm />} />
                         <Route path="AddWeekMenu" element={<WeekMenuForm />} />
+                        <Route path="AddWeekMenu/:id" element={<WeekMenuForm />} />
                         <Route path="*" element={<NoPage />} />
                     </Route>
                 </Routes>
