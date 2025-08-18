@@ -32,6 +32,9 @@ function ToDoList() {
         setEditingToDo(toDo);
     };
 
+    const toDateInputValue = isoString =>
+        new Date(isoString).toISOString().slice(0, 10);
+
     const handleUpdate = async (e) => {
         e.preventDefault();
 
@@ -143,6 +146,19 @@ function ToDoList() {
                             </option>
                         ))}
                     </select>
+
+                    <input
+                        type="date"
+                        value={toDateInputValue(editingToDo.dueDate)}
+                        onChange={e =>
+                            setEditingToDo({
+                                ...editingToDo,
+                                dueDate: e.target.value // blijft 'YYYY-MM-DD'
+                            })
+                        }
+                        className="border p-2 w-full"
+                    />
+
                     <button
                         type="submit"
                     >
