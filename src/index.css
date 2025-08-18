@@ -49,8 +49,8 @@ code {
             @apply border-2 border-primary rounded-lg p-2;
         }
 
-        button {
-            @apply bg-primary font-semibold text-white px-4 py-2 rounded hover:bg-secondary w-1/2 mt-4;
+        .btn {
+            @apply bg-primary font-semibold text-center text-white px-4 py-2 rounded hover:bg-secondary w-1/2 mt-4;
         }
     }
 }
