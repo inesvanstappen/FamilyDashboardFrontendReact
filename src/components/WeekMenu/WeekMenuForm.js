@@ -1,22 +1,39 @@
 import {useEffect, useState} from "react";
 import Card from "../Card/Card";
 import {DAYS, URL_BACKEND} from "../constants";
-import {Link} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 
 function WeekMenuForm() {
     const [recipes, setRecipes] = useState([]);
     const [startDate, setStartDate] = useState("");
     const [selectedRecipes, setSelectedRecipes] = useState(Array(7).fill(""));
 
+    const {id} = useParams();
+    const navigate = useNavigate();
+
     useEffect(() => {
         async function fetchRecipes() {
-            const response = await fetch('http://localhost:8080/recipes');
+            const response = await fetch(`${URL_BACKEND}/recipes`);
             const data = await response.json();
             setRecipes(data);
         }
 
+        async function fetchWeekMenu() {
+            const response = await fetch(`${URL_BACKEND}/weekmenu/${id}`);
+            const data = await response.json();
+            setStartDate(data.startDate);
+            const idRecipes = data.upcomingDayRecipes.map((r) => r.recipe.id);
+            setSelectedRecipes(idRecipes);
+        }
+
         fetchRecipes();
-    }, []);
+
+        if (id) {
+            fetchWeekMenu();
+        }
+
+        fetchRecipes();
+    }, [id]);
 
     const handleRecipeChange = (dayIndex, recipeName) => {
         const copy = [...selectedRecipes];
@@ -37,8 +54,13 @@ function WeekMenuForm() {
             recipeIds
         };
 
-        const res = await fetch(`${URL_BACKEND}/weekmenu`, {
-            method: "POST",
+        const method = id ? "PUT" : "POST";
+        const url = id
+            ? `${URL_BACKEND}/weekmenu/${id}`
+            : `${URL_BACKEND}/weekmenu`;
+
+        const res = await fetch(url, {
+            method,
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(payload),
         });
@@ -47,7 +69,7 @@ function WeekMenuForm() {
             console.error("Opslaan mislukt", await res.text());
         } else {
             console.log("Weekmenu opgeslagen!");
-            // evt. form resetten of doorsturen
+            navigate('/');
         }
     };
 
