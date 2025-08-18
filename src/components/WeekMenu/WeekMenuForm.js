@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import Card from "../Card/Card";
 import {DAYS, URL_BACKEND} from "../constants";
+import {Link} from "react-router-dom";
 
 function WeekMenuForm() {
     const [recipes, setRecipes] = useState([]);
@@ -90,7 +91,11 @@ function WeekMenuForm() {
                         </div>
                     </div>
 
-                    <div className="flex justify-center mt-6">
+                    <div className="flex justify-center mt-6 gap-8">
+                        <Link to={'/'} className="btn">
+                            Terug
+                        </Link>
+
                         <button
                             type="submit"
                             className="btn"
