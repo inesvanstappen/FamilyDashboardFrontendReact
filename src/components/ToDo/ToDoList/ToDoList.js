@@ -6,6 +6,7 @@ import {faPencil} from "@fortawesome/free-solid-svg-icons";
 function ToDoList() {
     const [toDos, setToDos] = useState([]);
     const [editingToDo, setEditingToDo] = useState(null);
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
         async function fetchToDoList() {
@@ -15,6 +16,16 @@ function ToDoList() {
         }
 
         fetchToDoList();
+    }, []);
+
+    useEffect(() => {
+        async function fetchUsers() {
+            const res = await fetch('http://localhost:8080/users');
+            const data = await res.json();
+            setUsers(data);
+        }
+
+        fetchUsers();
     }, []);
 
     const handleEdit = (toDo) => {
@@ -34,6 +45,7 @@ function ToDoList() {
             const updatedList = toDos.map((item) =>
                 item.id === editingToDo.id ? editingToDo : item
             );
+
             setToDos(updatedList);
             setEditingToDo(null);
         }
@@ -114,9 +126,25 @@ function ToDoList() {
                         <option value="DONE">Done</option>
                         <option value="WAITING_FOR">Waiting For</option>
                     </select>
+                    <select
+                        value={editingToDo.assignedUserId}
+                        onChange={(e) =>
+                            setEditingToDo({
+                                ...editingToDo,
+                                assignedUserId: Number(e.target.value),
+                                assignedUserName: users.find(user => user.id === Number(e.target.value)).name,
+                            })
+                        }
+                        className="border p-2 w-full"
+                    >
+                        {users.map((user) => (
+                            <option key={user.id} value={user.id}>
+                                {user.name}
+                            </option>
+                        ))}
+                    </select>
                     <button
                         type="submit"
-                        className="bg-blue-500 text-white px-4 py-2 rounded"
                     >
                         Opslaan
                     </button>
