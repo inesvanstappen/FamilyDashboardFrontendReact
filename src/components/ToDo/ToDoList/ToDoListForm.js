@@ -1,15 +1,16 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import Card from "../../Card/Card";
 import {URL_BACKEND} from "../../constants";
+import {Link} from "react-router-dom";
 
 const STATUS_OPTIONS = [
-    { value: "OPEN", label: "Open" },
-    { value: "IN_PROGRESS", label: "In Progress" },
-    { value: "DONE", label: "Done" },
-    { value: "WAITING_FOR", label: "Waiting For" },
+    {value: "OPEN", label: "Open"},
+    {value: "IN_PROGRESS", label: "In Progress"},
+    {value: "DONE", label: "Done"},
+    {value: "WAITING_FOR", label: "Waiting For"},
 ];
 
-function ToDoForm({ onSuccess }) {
+function ToDoForm({onSuccess}) {
     const [users, setUsers] = useState([]);
     const [title, setTitle] = useState("");
     const [dueDate, setDueDate] = useState("");
@@ -27,15 +28,14 @@ function ToDoForm({ onSuccess }) {
                 console.error("Kon users niet ophalen:", err);
             }
         }
+
         fetchUsers();
     }, []);
 
-    // 2. Form submit handler
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError("");
 
-        // Validatie
         if (!title || !dueDate || !assignedUserId || !status) {
             setError("Vul alle velden in.");
             return;
@@ -51,7 +51,7 @@ function ToDoForm({ onSuccess }) {
         try {
             const res = await fetch(`${URL_BACKEND}/todo`, {
                 method: "POST",
-                headers: { "Content-Type": "application/json" },
+                headers: {"Content-Type": "application/json"},
                 body: JSON.stringify(payload),
             });
 
@@ -141,8 +141,12 @@ function ToDoForm({ onSuccess }) {
                     </p>
                 )}
 
-                <div className="flex justify-center mt-6">
-                    <button type="submit">
+                <div className="flex justify-center mt-6 gap-8">
+                        <Link to={'/'} className="btn">
+                            Terug
+                        </Link>
+
+                    <button type="submit" className="btn">
                         Opslaan
                     </button>
                 </div>

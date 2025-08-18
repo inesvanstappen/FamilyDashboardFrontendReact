@@ -93,6 +93,7 @@ function WeekMenuForm() {
                     <div className="flex justify-center mt-6">
                         <button
                             type="submit"
+                            className="btn"
                         >
                             Opslaan
                         </button>
