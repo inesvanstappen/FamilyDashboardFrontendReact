@@ -5,6 +5,7 @@ import {faPencil} from "@fortawesome/free-solid-svg-icons";
 
 function ToDoList() {
     const [toDos, setToDos] = useState([]);
+    const [editingToDo, setEditingToDo] = useState(null);
 
     useEffect(() => {
         async function fetchToDoList() {
@@ -15,6 +16,28 @@ function ToDoList() {
 
         fetchToDoList();
     }, []);
+
+    const handleEdit = (toDo) => {
+        setEditingToDo(toDo);
+    };
+
+    const handleUpdate = async (e) => {
+        e.preventDefault();
+
+        const response = await fetch(`http://localhost:8080/todo/${editingToDo.id}`, {
+            method: 'PUT',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(editingToDo),
+        });
+
+        if (response.ok) {
+            const updatedList = toDos.map((item) =>
+                item.id === editingToDo.id ? editingToDo : item
+            );
+            setToDos(updatedList);
+            setEditingToDo(null);
+        }
+    };
 
     const getStatusDotClass = (status) => {
         switch (status) {
@@ -47,7 +70,7 @@ function ToDoList() {
                                     <span className="text-xs uppercase font-semibold">
                                         {toDo.status.replace('_', ' ')}
                                     </span>
-                                    <span>
+                                    <span onClick={() => handleEdit(toDo)} className="cursor-pointer">
                                         <FontAwesomeIcon
                                             icon={faPencil}
                                             className=""
@@ -65,6 +88,40 @@ function ToDoList() {
                     <p>Geen taken gevonden.</p>
                 )}
             </ul>
+            {editingToDo && (
+                <form
+                    onSubmit={handleUpdate}
+                    className="mt-6 p-4 border rounded bg-gray-50 space-y-4"
+                >
+                    <h3>Taak bewerken</h3>
+                    <input
+                        type="text"
+                        value={editingToDo.title}
+                        onChange={(e) =>
+                            setEditingToDo({...editingToDo, title: e.target.value})
+                        }
+                        className="border p-2 w-full"
+                    />
+                    <select
+                        value={editingToDo.status}
+                        onChange={(e) =>
+                            setEditingToDo({...editingToDo, status: e.target.value})
+                        }
+                        className="border p-2 w-full"
+                    >
+                        <option value="OPEN">Open</option>
+                        <option value="IN_PROGRESS">In Progress</option>
+                        <option value="DONE">Done</option>
+                        <option value="WAITING_FOR">Waiting For</option>
+                    </select>
+                    <button
+                        type="submit"
+                        className="bg-blue-500 text-white px-4 py-2 rounded"
+                    >
+                        Opslaan
+                    </button>
+                </form>
+            )}
         </div>
     );
 }
