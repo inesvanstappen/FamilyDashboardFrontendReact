@@ -1,5 +1,7 @@
 import {useEffect, useState} from 'react';
 import styles from './ToDoList.module.css'
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPencil} from "@fortawesome/free-solid-svg-icons";
 
 function ToDoList() {
     const [toDos, setToDos] = useState([]);
@@ -44,6 +46,12 @@ function ToDoList() {
                                     ></span>
                                     <span className="text-xs uppercase font-semibold">
                                         {toDo.status.replace('_', ' ')}
+                                    </span>
+                                    <span>
+                                        <FontAwesomeIcon
+                                            icon={faPencil}
+                                            className=""
+                                        />
                                     </span>
                                 </div>
                             </div>
