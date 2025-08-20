@@ -6,7 +6,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 function WeekMenuForm() {
     const [recipes, setRecipes] = useState([]);
     const [startDate, setStartDate] = useState("");
-    const [selectedRecipes, setSelectedRecipes] = useState(Array(7).fill(""));
+    const [recipeIds, setRecipeIds] = useState(Array(7).fill(""));
 
     const {id} = useParams();
     const navigate = useNavigate();
@@ -22,8 +22,8 @@ function WeekMenuForm() {
             const response = await fetch(`${URL_BACKEND}/weekmenu/${id}`);
             const data = await response.json();
             setStartDate(data.startDate);
-            const idRecipes = data.upcomingDayRecipes.map((r) => r.recipe.id);
-            setSelectedRecipes(idRecipes);
+            const idRecipes = data.recipes.map((r) => r.id);
+            setRecipeIds(idRecipes);
         }
 
         fetchRecipes();
@@ -35,19 +35,14 @@ function WeekMenuForm() {
         fetchRecipes();
     }, [id]);
 
-    const handleRecipeChange = (dayIndex, recipeName) => {
-        const copy = [...selectedRecipes];
-        copy[dayIndex] = recipeName;
-        setSelectedRecipes(copy);
+    const handleRecipeChange = (dayIndex, recipeId) => {
+        const copy = [...recipeIds];
+        copy[dayIndex] = recipeId;
+        setRecipeIds(copy);
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-        const recipeIds = selectedRecipes.map((name) => {
-            const match = recipes.find((r) => r.name === name);
-            return match ? match.id : null;
-        });
 
         const payload = {
             startDate,
@@ -96,14 +91,14 @@ function WeekMenuForm() {
                                     <label htmlFor={`day-${idx}`}>{day}</label>
                                     <select
                                         id={`day-${idx}`}
-                                        value={selectedRecipes[idx]}
-                                        onChange={(e) => handleRecipeChange(idx, e.target.value)}
+                                        value={recipeIds[idx] || ""}
+                                        onChange={(e) => handleRecipeChange(idx, Number(e.target.value))}
                                         required
                                         className="border rounded px-2 py-1 w-full"
                                     >
                                         <option value="">— Selecteer recept —</option>
                                         {recipes.map((r) => (
-                                            <option key={r.id} value={r.name}>
+                                            <option key={r.id} value={r.id}>
                                                 {r.name}
                                             </option>
                                         ))}
