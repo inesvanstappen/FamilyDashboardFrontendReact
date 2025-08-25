@@ -16,7 +16,7 @@ function Weather({onRefreshRef}) {
         if (onRefreshRef) {
             onRefreshRef.current = fetchWeather;
         }
-    });
+    }, []);
 
     if (!weather?.forecast?.length) {
         return <p>Loading weather data...</p>;
