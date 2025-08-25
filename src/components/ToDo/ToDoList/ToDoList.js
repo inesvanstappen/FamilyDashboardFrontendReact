@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import styles from './ToDoList.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPencil} from "@fortawesome/free-solid-svg-icons";
+import {faPencil, faTrash, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import {URL_BACKEND} from "../../constants";
 
 function ToDoList() {
@@ -37,8 +37,32 @@ function ToDoList() {
         setEditingToDo(null);
     }
 
-    const toDateInputValue = isoString =>
-        new Date(isoString).toISOString().slice(0, 10);
+    const toDateInputValue = isoString => {
+        return new Date(isoString).toISOString().slice(0, 10);
+    }
+
+    const sortToDos = (list) => {
+        return [...list].sort((a, b) => {
+            if (a.status === 'DONE' && b.status !== 'DONE') return 1;
+            if (a.status !== 'DONE' && b.status === 'DONE') return -1;
+            return 0; // behoud originele volgorde voor andere statussen
+        });
+    };
+
+    async function handleDelete(toDo) {
+        const response = await fetch(`${URL_BACKEND}/todo/${toDo.id}`, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+        });
+
+        if (response.ok) {
+            const updatedList = toDos.filter(item => item.id !== toDo.id);
+
+            setToDos(updatedList);
+
+            alert(`Taak "${toDo.title}" succesvol verwijderd.`);
+        }
+    }
 
     const handleUpdate = async (e) => {
         e.preventDefault();
@@ -78,10 +102,10 @@ function ToDoList() {
         <>
             <ul className="space-y-6">
                 {toDos.length > 0 ? (
-                    toDos.map((toDo, index) => (
+                    sortToDos(toDos).map((toDo, index) => (
                         <li key={index}>
                             <div className="flex items-center justify-between">
-                                <p className="font-semibold">{toDo.title}</p>
+                                <p className="font-semibold text-left">{toDo.title}</p>
                                 <div className="flex items-center gap-2">
                                     <span
                                         className={`w-3 h-3 rounded-full inline-block mr-2 ${getStatusDotClass(toDo.status)}`}
@@ -93,6 +117,12 @@ function ToDoList() {
                                     <span onClick={() => handleEdit(toDo)} className="cursor-pointer">
                                         <FontAwesomeIcon
                                             icon={faPencil}
+                                            className=""
+                                        />
+                                    </span>
+                                    <span onClick={() => handleDelete(toDo)} className="cursor-pointer">
+                                        <FontAwesomeIcon
+                                            icon={faTrashCan}
                                             className=""
                                         />
                                     </span>
