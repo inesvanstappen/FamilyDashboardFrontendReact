@@ -19,9 +19,11 @@ function Card({width, shadow, title, icons = [], coloredHeader, children}) {
                 </div>
             )}
         </h2>
-        {
-            children
-        }
+        <div className="p-6">
+            {
+                children
+            }
+        </div>
     </div>
 }
 
