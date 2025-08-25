@@ -33,6 +33,10 @@ function ToDoList() {
         setEditingToDo(toDo);
     };
 
+    const handleCancel = () => {
+        setEditingToDo(null);
+    }
+
     const toDateInputValue = isoString =>
         new Date(isoString).toISOString().slice(0, 10);
 
@@ -71,7 +75,7 @@ function ToDoList() {
     };
 
     return (
-        <div className="p-6">
+        <>
             <ul className="space-y-6">
                 {toDos.length > 0 ? (
                     toDos.map((toDo, index) => (
@@ -160,14 +164,19 @@ function ToDoList() {
                         className="border p-2 w-full"
                     />
 
-                    <button
-                        type="submit"
-                    >
-                        Opslaan
-                    </button>
+                    <div className="btn-wrapper">
+                        <button className="btn"
+                                type="submit"
+                        >
+                            Opslaan
+                        </button>
+                        <button className="btn" type="button" onClick={handleCancel}>
+                            Cancel
+                        </button>
+                    </div>
                 </form>
             )}
-        </div>
+        </>
     );
 }
 
