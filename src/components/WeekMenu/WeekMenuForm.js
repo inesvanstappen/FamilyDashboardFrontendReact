@@ -35,13 +35,13 @@ function WeekMenuForm() {
         fetchRecipes();
     }, [id]);
 
-    const handleRecipeChange = (dayIndex, recipeId) => {
+    function handleRecipeChange(dayIndex, recipeId) {
         const copy = [...recipeIds];
         copy[dayIndex] = recipeId;
         setRecipeIds(copy);
-    };
+    }
 
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
 
         const payload = {
@@ -66,7 +66,7 @@ function WeekMenuForm() {
             console.log("Weekmenu opgeslagen!");
             navigate('/');
         }
-    };
+    }
 
     return (
         <>

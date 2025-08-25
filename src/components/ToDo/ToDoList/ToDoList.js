@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react';
 import styles from './ToDoList.module.css'
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPencil, faTrash, faTrashCan} from "@fortawesome/free-solid-svg-icons";
+import {faPencil, faTrashCan} from "@fortawesome/free-solid-svg-icons";
 import {URL_BACKEND} from "../../constants";
 
 function ToDoList() {
@@ -29,25 +29,25 @@ function ToDoList() {
         fetchUsers();
     }, []);
 
-    const handleEdit = (toDo) => {
+    function handleEdit(toDo) {
         setEditingToDo(toDo);
-    };
+    }
 
-    const handleCancel = () => {
+    function handleCancel(){
         setEditingToDo(null);
     }
 
-    const toDateInputValue = isoString => {
+    function toDateInputValue(isoString) {
         return new Date(isoString).toISOString().slice(0, 10);
     }
 
-    const sortToDos = (list) => {
+    function sortToDos(list) {
         return [...list].sort((a, b) => {
             if (a.status === 'DONE' && b.status !== 'DONE') return 1;
             if (a.status !== 'DONE' && b.status === 'DONE') return -1;
             return 0; // behoud originele volgorde voor andere statussen
         });
-    };
+    }
 
     async function handleDelete(toDo) {
         const response = await fetch(`${URL_BACKEND}/todo/${toDo.id}`, {
@@ -64,7 +64,7 @@ function ToDoList() {
         }
     }
 
-    const handleUpdate = async (e) => {
+    async function handleUpdate(e) {
         e.preventDefault();
 
         const response = await fetch(`${URL_BACKEND}/todo/${editingToDo.id}`, {
@@ -81,9 +81,9 @@ function ToDoList() {
             setToDos(updatedList);
             setEditingToDo(null);
         }
-    };
+    }
 
-    const getStatusDotClass = (status) => {
+    function getStatusDotClass(status) {
         switch (status) {
             case 'OPEN':
                 return styles.statusOpen;
@@ -96,7 +96,7 @@ function ToDoList() {
             default:
                 return 'bg-gray-400';
         }
-    };
+    }
 
     return (
         <>

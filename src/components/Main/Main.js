@@ -8,13 +8,13 @@ import {useRef, useState} from "react";
 function Main() {
     const weatherRef = useRef();
 
-    const handleRefreshWeather = () => {
+    const [weekmenuId, setWeekmenuId] = useState(null);
+
+    function handleRefreshWeather() {
         if (weatherRef.current) {
             weatherRef.current();
         }
     }
-
-    const [weekmenuId, setWeekmenuId] = useState(null);
 
     return (
         <>
@@ -33,10 +33,10 @@ function Main() {
                 </Card>
                 <Card width="w-1/3" shadow={true} coloredHeader={true} title="Weekmenu"
                       icons={[
-                          weekmenuId && { icon: faPencil, link: `/AddWeekMenu/${weekmenuId}` },
-                          { icon: faPlus, link: "/AddWeekMenu" }
+                          weekmenuId && {icon: faPencil, link: `/AddWeekMenu/${weekmenuId}`},
+                          {icon: faPlus, link: "/AddWeekMenu"}
                       ].filter(Boolean)}>
-                    <WeekMenu onLoad={setWeekmenuId} />
+                    <WeekMenu onLoad={setWeekmenuId}/>
                 </Card>
             </main>
         </>

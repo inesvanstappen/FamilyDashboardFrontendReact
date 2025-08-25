@@ -32,7 +32,7 @@ function ToDoForm({onSuccess}) {
         fetchUsers();
     }, []);
 
-    const handleSubmit = async (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
         setError("");
 
@@ -70,7 +70,7 @@ function ToDoForm({onSuccess}) {
             console.error(err);
             setError(err.message);
         }
-    };
+    }
 
     return (
         <Card width="w-5/6" shadow={false} coloredHeader={false} title="Nieuwe ToDo">

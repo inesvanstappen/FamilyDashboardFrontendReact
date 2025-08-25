@@ -18,9 +18,9 @@ function WeekMenu({onLoad}) {
         }
 
         fetchWeekMenu();
-    }, []);
+    });
 
-    const mergeDataWithDaysOfTheWeek = () => {
+    function mergeDataWithDaysOfTheWeek() {
         return weekMenu.upcomingDayRecipes.map((dayData) => {
             return {
                 id: dayData.id,
@@ -30,7 +30,7 @@ function WeekMenu({onLoad}) {
                 difficulty: dayData.recipe.difficulty || "easy"
             };
         })
-    };
+    }
 
     return (
         <div className="flex flex-col gap-4">
@@ -43,7 +43,7 @@ function WeekMenu({onLoad}) {
                         <div className="w-full sm:w-1/4 font-semibold">{data.day}</div>
                         <div className="w-full sm:w-1/4 text-right">{data.nameDish}</div>
                         <div className="w-full sm:w-1/4 text-right">
-                            <DifficultyDots level={data.difficulty} />
+                            <DifficultyDots level={data.difficulty}/>
                         </div>
                     </div>
                 ))

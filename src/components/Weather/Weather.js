@@ -4,19 +4,19 @@ import {URL_BACKEND} from "../constants";
 function Weather({onRefreshRef}) {
     const [weather, setWeather] = useState(null);
 
-    const fetchWeather = async () => {
+    async function fetchWeather() {
         const response = await fetch(`${URL_BACKEND}/weather`);
         const data = await response.json();
         setWeather(data);
-    };
+    }
 
     useEffect(() => {
         fetchWeather();
 
-        if(onRefreshRef) {
+        if (onRefreshRef) {
             onRefreshRef.current = fetchWeather;
         }
-    }, []);
+    });
 
     if (!weather?.forecast?.length) {
         return <p>Loading weather data...</p>;
