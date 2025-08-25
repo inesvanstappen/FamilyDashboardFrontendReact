@@ -12,7 +12,7 @@ function WeekMenu({onLoad}) {
 
             setWeekMenu(data);
 
-            if (data.upcomingDayRecipes.length > 0 && typeof onLoad === 'function') {
+            if (data && data.upcomingDayRecipes && data.upcomingDayRecipes.length > 0 && typeof onLoad === 'function') {
                 onLoad(data.id);
             }
         }
@@ -34,7 +34,7 @@ function WeekMenu({onLoad}) {
 
     return (
         <div className="flex flex-col gap-4">
-            {weekMenu.upcomingDayRecipes.length > 0 &&
+            {Array.isArray(weekMenu.upcomingDayRecipes) && weekMenu.upcomingDayRecipes.length > 0 ? (
                 mergeDataWithDaysOfTheWeek().map(data => (
                     <div
                         key={data.id}
@@ -43,10 +43,14 @@ function WeekMenu({onLoad}) {
                         <div className="w-full sm:w-1/4 font-semibold">{data.day}</div>
                         <div className="w-full sm:w-1/4 text-right">{data.nameDish}</div>
                         <div className="w-full sm:w-1/4 text-right">
-                            <DifficultyDots level={data.difficulty}/>
+                            <DifficultyDots level={data.difficulty} />
                         </div>
                     </div>
-                ))}
+                ))
+            ) : (
+                <p>Geen recepten gevonden.</p>
+            )}
+
         </div>
     )
 }
